@@ -1,29 +1,88 @@
-/* ------------------------------
-   GLOBAL STYLES
------------------------------- */
+/* =========================================
+   Standing Stone Data – Global Theme
+   Light + Dark Mode with Steel Blue Accent
+========================================= */
+
+/* ---------- CSS Variables ---------- */
+
+:root {
+    /* Light mode colours */
+    --color-bg: #f4f4f4;
+    --color-bg-card: #ffffff;
+    --color-text: #333333;
+    --color-text-muted: #7a828c;
+
+    --color-primary: #2c3e50;   /* deep slate navy */
+    --color-primary-soft: #3b4a5a; /* steel blue */
+    --color-accent: #4a90e2;   /* cool blue */
+    --color-border: #e0e0e0;
+
+    --shadow-soft: 0 4px 14px rgba(0,0,0,0.08);
+
+    --radius-card: 12px;
+    --transition-fast: 0.25s ease;
+}
+
+:root[data-theme="dark"] {
+    /* Dark mode overrides */
+    --color-bg: #1a1d21;
+    --color-bg-card: #24282d;
+    --color-text: #e6e6e6;
+    --color-text-muted: #bfc5cc;
+
+    --color-primary: #e6e6e6;
+    --color-primary-soft: #cfd6e0;
+    --color-accent: #6ca8ff;
+    --color-border: #3a3f46;
+
+    --shadow-soft: 0 4px 18px rgba(0,0,0,0.5);
+}
+
+/* ---------- Global ---------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     font-family: 'Lato', sans-serif;
-    background-color: #fafafa;
-    color: #333;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     line-height: 1.6;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
     margin-top: 0;
+    color: var(--color-primary);
 }
 
-/* ------------------------------
-   HEADER / HERO
------------------------------- */
+/* ---------- Layout ---------- */
+
+.section {
+    padding: 60px 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* =========================================
+   Header / Hero
+========================================= */
 
 .hero-header {
     background: linear-gradient(135deg, #2c3e50, #34495e);
     color: white;
     padding: 60px 0;
     text-align: center;
+    position: relative;
 }
 
 .hero-title {
@@ -36,24 +95,49 @@ h1, h2, h3 {
     opacity: 0.9;
 }
 
+/* Theme toggle (moon/sun icon) */
+
+.theme-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: #f4f4f4;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 999px;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255,255,255,0.12);
+    transform: translateY(-1px);
+}
+
+/* Social links */
+
 .social-links a {
     color: white;
     margin: 0 10px;
     font-size: 26px;
-    transition: 0.3s;
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .social-links a:hover {
-    color: #f39c12;
+    color: var(--color-accent);
+    transform: translateY(-1px);
 }
 
-/* ------------------------------
-   NAVIGATION
------------------------------- */
+/* =========================================
+   Navigation
+========================================= */
 
 nav {
-    background: #ffffff;
-    border-bottom: 1px solid #ddd;
+    background: var(--color-bg-card);
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .nav-list {
@@ -70,32 +154,18 @@ nav {
 
 .nav-list a {
     text-decoration: none;
-    color: #2c3e50;
+    color: var(--color-primary-soft);
     font-weight: 600;
-    transition: 0.3s;
+    transition: color var(--transition-fast);
 }
 
 .nav-list a:hover {
-    color: #d35400;
+    color: var(--color-accent);
 }
 
-/* ------------------------------
-   SECTIONS
------------------------------- */
-
-.section {
-    padding: 60px 0;
-}
-
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: auto;
-}
-
-/* ------------------------------
-   ABOUT SECTION
------------------------------- */
+/* =========================================
+   About
+========================================= */
 
 .about-content {
     display: flex;
@@ -109,11 +179,16 @@ nav {
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid var(--color-border);
 }
 
-/* ------------------------------
-   PROJECT GRID
------------------------------- */
+.about-text p {
+    color: var(--color-text);
+}
+
+/* =========================================
+   Projects
+========================================= */
 
 .projects-grid {
     display: grid;
@@ -121,86 +196,89 @@ nav {
     gap: 35px;
 }
 
-/* ------------------------------
-   PROJECT CARD
------------------------------- */
+/* Card */
 
 .project-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .project-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.16);
 }
 
-/* Project Title */
+/* Title */
+
 .project-title {
-    color: #d35400; /* SES-friendly deep orange */
+    color: var(--color-primary-soft);
     font-size: 22px;
     font-weight: 700;
     padding: 16px 20px 0 20px;
 }
 
-/* Project Image — FIXED CROPPING + ALIGNMENT */
+/* Image */
+
 .project-image {
     width: 100%;
     height: 240px;
-    object-fit: contain; /* ensures full image is visible */
+    object-fit: contain;
     background-color: transparent;
-    padding: 0;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--color-border);
 }
 
-/* Project Description */
+/* Description */
+
 .project-description {
     padding: 16px 20px 0 20px;
     margin-bottom: 10px;
     font-size: 15px;
-    color: #444;
+    color: var(--color-text);
 }
 
 /* Buttons */
+
 .project-buttons {
     display: flex;
     gap: 10px;
     padding: 16px 20px 20px 20px;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--color-border);
     margin-top: auto;
 }
 
 .btn {
-    background: #d35400;
-    color: white;
+    background: var(--color-accent);
+    color: #ffffff;
     padding: 10px 16px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
+    font-size: 14px;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .btn:hover {
-    background: #b84300;
+    background: #3a78c0;
+    transform: translateY(-1px);
 }
 
 .btn-secondary {
-    background: #2c3e50;
+    background: var(--color-primary-soft);
 }
 
 .btn-secondary:hover {
-    background: #1f2d3a;
+    background: var(--color-primary);
 }
 
-/* ------------------------------
-   SKILLS SECTION
------------------------------- */
+/* =========================================
+   Skills
+========================================= */
 
 .skills-table {
     display: flex;
@@ -222,7 +300,7 @@ nav {
 
 .skill-header i {
     font-size: 24px;
-    color: #d35400;
+    color: var(--color-accent);
 }
 
 .skill-list {
@@ -233,16 +311,41 @@ nav {
 
 .skill-list li {
     padding: 6px 0;
+    color: var(--color-text);
 }
 
-/* ------------------------------
-   FOOTER
------------------------------- */
+/* =========================================
+   Footer
+========================================= */
 
 footer {
-    background: #2c3e50;
+    background: var(--color-primary);
     color: white;
     text-align: center;
     padding: 20px 0;
     margin-top: 40px;
+    font-size: 14px;
+}
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-image {
+        height: 220px;
+    }
 }
