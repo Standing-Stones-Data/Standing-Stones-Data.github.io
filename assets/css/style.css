@@ -354,3 +354,8 @@ footer {
 [data-theme="dark"] .hero-header .hero-subtitle {
     color: #ffffff;
 }
+/* Ensure hero text is always visible */
+.hero-header .hero-title,
+.hero-header .hero-subtitle {
+    color: #ffffff !important;
+}
