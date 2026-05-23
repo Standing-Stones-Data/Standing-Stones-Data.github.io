@@ -50,3 +50,38 @@ function embedPowerBIDashboard() {
 
 // Initialize any additional components
 document.addEventListener('DOMContentLoaded', embedPowerBIDashboard);
+// --- your existing JS stays here ---
+
+// =======================================
+// Dark mode toggle with system preference
+// =======================================
+
+(function () {
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+
+    const prefersDark = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const storedTheme = localStorage.getItem('ssd-theme');
+
+    function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('ssd-theme', theme);
+        toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Initial theme
+    if (storedTheme) {
+        applyTheme(storedTheme);
+    } else {
+        applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    // Toggle on click
+    toggle.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+})();
+
