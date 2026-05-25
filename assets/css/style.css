@@ -382,6 +382,7 @@ footer {
 [data-theme="dark"] .btn-secondary:hover {
     background: #3a78c0;
 }
-.social-links a i {
-    text-decoration: none;
+.social-links a {
+    text-decoration: none !important;
 }
+
